@@ -4,6 +4,7 @@
 * 盒模型
     
     - IE盒模型
+    
         box width = content width + padding left + padding right + border left + border right
 
         box height = content height + padding top + padding bottom + border top + border bottom   
