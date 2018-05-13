@@ -58,6 +58,7 @@ if (a == 1 && a == 2 && a == 3) {
     console.log('hello world!');
 }
 ```
+参考[https://juejin.im/post/5a7172d9f265da3e3245cbca](https://juejin.im/post/5a7172d9f265da3e3245cbca)
 ### 2、 字符串
 
 常用方法
@@ -78,18 +79,27 @@ replace     方法返回一个由替换值替换一些或所有匹配的模式�
 会改变原数组的方法
 
 pop         删除末尾元素 返回删除的元素，删除为空时是undefined
+
 push        向后追加一个元素 返回新数组的长度
+
 unshift     向前追加一个元素 返回新数组的长度
+
 shift       删除第一个元素 返回删除的元素，删除为空时是undefined
+
 splice      数组修改最常用方法   返回一个数组 包含被删除的元素 
+
 reverse     翻转数组
 
 不会改变原数组的方法
 
 concat      合并数组 返回合并后的新数组（可以给用来做浅拷贝）
+
 slice       截取数组 返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象 可以将伪数组转为真正数组
+
 join    将数组转为字符串
+
 some,every  判断数组元素是否通过函数测试，some 为true时跳出，every 若为false时则停止检测跳出
+
 reduce,map,filter,forEach 数组的一些迭代方法，不会修改原数组
 
 判断一个元素是不是数组
@@ -98,9 +108,6 @@ reduce,map,filter,forEach 数组的一些迭代方法，不会修改原数组
     Object.prototype.toString.call(arr) === '[object Array]'
     Array.isArray(arr)
 
-
-
-参考[https://juejin.im/post/5a7172d9f265da3e3245cbca](https://juejin.im/post/5a7172d9f265da3e3245cbca)
-
+### 4、 原型
 
 
