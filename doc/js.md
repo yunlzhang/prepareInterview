@@ -115,3 +115,233 @@ javascript 中 每个对象都有一个私有属性（称之为[[Prototype]]）,
 构造函数、原型、实例的关系：每个构造函数都有一个原型对象，原型对象中都包含一个指向构造函数的指针（constructor）,而实例都包含一个指向原型对象的内部指针（\_\_proto\_\_）
 
 基于原型链继承的思想：利用原型让一个引用类型继承另一个引用类型的属性和方法。
+
+
+### 5、创建对象的方式
+
+* 工厂模式
+```js
+function createObj(){
+    var o = new Object();
+    o.name = 'aaa';
+    //XXXX
+    return o;
+}
+
+```
+
+* 构造函数模式
+```js
+function CreateObj(){
+    this.name = 'aaa';
+    this.sayName = function(){
+        console.log(this.name);
+    }
+}
+var newObj = new CreateObj();
+```
+缺点：
+
+每个方法都要在实例上创建一遍
+
+解决办法：将方法移到构造函数外面
+
+* 原型模式
+
+```js
+function CreateObj(){}
+CreateObj.prototype.name = 'aaa';
+CreateObj.prototype.sayName = function(){
+    console.log(this.name);
+}
+newObj = new CreateObj();
+```
+缺点：原型上引用类型的数据会被所有实例共享
+
+* 组合使用构造函数模式和原型模式
+
+```js
+function CreateObj(){
+    this.name = 'aaa';
+}
+CreateObj.prototype ={
+    constructor:CreateObj,
+    sayName: function(){
+        console.log(this.name);
+    }
+}
+```
+实例属性都是在构造函数中定义，所有实例共享的属性constructor 和 方法在原型中定义。
+
+
+* 动态原型方式
+
+```js
+function CreateObj(){
+    this.name = 'aaa';
+    if(typeof this.sayName !== 'function'){
+        CreateObj.prototype.sayName = function(){
+            console.log(this.name);
+        }
+    }
+}
+
+```
+调用改构造函数,只在sayName方法不存在的时候才会执行判断分支，此后，原型已经完成初始化。
+注意：不能使用对象字面量来修改原型，回切断现有实例和新原型之间的联系。
+
+* 寄生构造函数
+
+```js
+function CreateObj(){
+    var o = new Object();
+    o.name = 'aaa';
+    retrun o;
+}
+var newObj = new CreateObj();
+```
+感觉跟工厂模式区别不大，只不过多了一个new调用的过程。
+
+* 稳妥构造函数模式
+稳妥对象：没有公共属性，其方法也不引用this的对象
+```js
+function CreateObj(name){
+    //创建返回的对象
+    var o = new Object();
+    //定义私有属性和方法
+
+    o.sayName = function(){
+        console.log(name)
+    }
+    return o;
+}
+
+```
+
+
+### 6、继承
+
+确定原型和实例的方法：instanceof    isPrototypeOf()
+
+
+* 原型链继承
+
+```js
+function SuperType(){
+    this.name = 'Super';
+}
+SuperType.prototype.sayName = function(){
+    console.log(this.name)
+}
+function SubType(){}
+SubType.prototype = new SuperType();
+```
+问题：
+引用类型的原型属性会被所有实例共享。  
+
+重写了子类的prototype 导致constructor 属性丢失，instanceof失去作用(将子类的constructor属性重新赋值)
+>SubType.prototype.constructor = SubType;
+
+无法向构造函数传递参数
+
+
+* 借用构造函数(伪造对象或经典继承)
+
+```js
+function SuperType(){
+    this.name = 'Super';
+}
+SuperType.prototype.sayName = function(){
+    console.log(this.name)
+}
+//使用call 或 apply
+function SubType(){
+    SuperType.apply(this,arguments);
+    this.say = function(){};
+}
+```
+缺点：方法都在构造函数中定义，原型上函数无法复用
+
+
+* 组合继承
+使用原型链实现对原型属性和方法的继承，通过构造函数实现对实例属性的继承。
+```js
+function SuperType(){
+    this.name = 'Super';
+}
+SuperType.prototype.sayName = function(){
+    console.log(this.name)
+}
+//使用call 或 apply
+function SubType(){
+    SuperType.apply(this,arguments);
+    this.name = 'bbb';
+}
+SubType.prototype = new SuperType();
+SubType.prototype.constructor =  SubType;
+```
+避免原型链和借用构造函数的缺陷
+
+
+* 原型式继承
+借用原型可以基于已有的对象创建新对象
+```js
+function createObj(obj){
+    function F(){}
+    F.prototype = obj;
+    return new F();
+}
+
+```
+等同于 ES6中的Object.create();
+
+在传入一个参数的情况下，Object.create() 和 Object() 方法的行为相同
+
+* 寄生式继承
+```js
+function createNewObj(obj){
+    var clone = Object(obj);
+    clone.anotherFun = function(){
+
+    }
+    return clone;
+}
+```
+
+缺点：使用寄生式继承来为对象添加函数，不能做到函数复用而降低效率。与构造函数类型
+
+* 寄生组合式继承
+
+```js
+function SuperType(){
+    this.name = 'aaa';
+}
+SuperType.prototype.sayName = function(){
+    console.log(this.name);
+}
+function SubType(){
+    SuperType.call(this);
+}
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
+
+```
+缺点：父类构造函数被调用了两次
+
+
+改进：
+```js
+function SuperType(){
+    this.name = 'aaa';
+}
+SuperType.prototype.sayName = function(){
+    console.log(this.name);
+}
+function SubType(){
+    SuperType.call(this);
+}
+SubType.prototype = Object.create(SuperType.prototype);
+SubType.prototype.constructor = SubType;
+
+```
+
