@@ -418,3 +418,5 @@ clear();//清除所有的
 ![cache](../img/cache.png)
 
 参考：https://segmentfault.com/a/1190000008377508
+
+
