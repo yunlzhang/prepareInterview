@@ -50,12 +50,18 @@ destroyed
 
 基于数据劫持的双向数据绑定
 
-利用Object.defineProperty生成的Observer针对对象／对象的属性进行劫持，在属性发生变化后通知订阅者。
+Vue采用数据劫持&发布-订阅模式的方式，通过ES5提供的 Object.defineProperty() 方法来劫持（监控）各属性的 getter 、setter ，并在数据（对象）发生变动时通知订阅者，触发相应的监听回调大致可以划分三个模块：Observer、Compile、Watcher
 
-解析器Compile解析模板中的Directive（指令），收集指令所依赖的方法和数据，等待数据变化然后进行渲染。
+Observer 数据监听器  负责对数据对象的所有属性进行监听（数据劫持），监听到数据发生变化后通知订阅者。
 
-Watcher属于Observer和Compile桥梁，它将接収到的Observer产生的数据变化，并根据Compile提供的指令进行视图渲染，使得数据变化促使视图变化。
+Compiler 指令解析器  扫描模板，并对指令进行解析，然后绑定指定事件。
 
+Watcher 订阅者  关联Observer和Compile，能够订阅并收到属性变动的通知，执行指令绑定的相应操作，更新视图。Update()是它自身的一个方法，用于执行Compile中绑定的回调，更新视图。
+
+图示：
+![双向数据绑定](../img/two-side-bind.png)
+
+参考：https://juejin.im/post/593021272f301e0058273468
 
 Vue 不能监测以下变动
 
