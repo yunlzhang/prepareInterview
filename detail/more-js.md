@@ -35,3 +35,16 @@ http 与 https 的区别
 3、http默认端口为80 https 默认端口号是443
 
 4、http是简单无状态，https是有ssl + http 组成的可进行加密传输、身份验证的䙳网络协议
+
+
+
+### 2、移动端点击穿透
+
+移动端的click事件300ms延迟是因为浏览器为了判断当前事件是否双击（double click）而在触发touchend事件后等待用户约300ms（双击事件可以缩放视图内容），若用户没有再次点击则默认触发click事件。
+
+解决办法
+通过设置meta标签
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" 
+
+    fastclick https://github.com/ftlabs/fastclick
