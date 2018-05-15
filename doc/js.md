@@ -363,19 +363,19 @@ cookie一般只有4k，localStorage,sessionStorage有5M
 
 cookie 读取
 ```js
-    function parseCookie(){
-        var obj = {};
-        document.cookie.split(';').forEach(function(item,index){
-            obj[item.split('=')[0]] = item.split('=')[1];
-        });
-        return obj;
-    }
-    //设置cookie及失效日期
-    //1
-    document.cookie += ';'+name+'='+value+';expires='+date // date为GMT时间  toGMTString();
-    //2
-    document.cookie += ';'+name+'='+value+';max-age='+time // 失效的毫秒数  正数持久化cookie 0 删除cookie  负数 会话cookie窗口关闭，cookie便清除   
-    //IE 浏览器 不支持 max-age
+function parseCookie(){
+    var obj = {};
+    document.cookie.split(';').forEach(function(item,index){
+        obj[item.split('=')[0]] = item.split('=')[1];
+    });
+    return obj;
+}
+//设置cookie及失效日期
+//1
+document.cookie += ';'+name+'='+value+';expires='+date // date为GMT时间  toGMTString();
+//2
+document.cookie += ';'+name+'='+value+';max-age='+time // 失效的毫秒数  正数持久化cookie 0 删除cookie  负数 会话cookie窗口关闭，cookie便清除   
+//IE 浏览器 不支持 max-age
 ```
 
 localStorage,sessionStorage读取
