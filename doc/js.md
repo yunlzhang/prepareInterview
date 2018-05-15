@@ -61,7 +61,7 @@ if (a == 1 && a == 2 && a == 3) {
 参考[https://juejin.im/post/5a7172d9f265da3e3245cbca](https://juejin.im/post/5a7172d9f265da3e3245cbca)
 ### 2、 字符串
 
-常用方法
+常用方法 （不会改变原字符串）
 
 match       当一个字符串与一个正则表达式匹配时， match()方法检索匹配项
 

@@ -21,5 +21,49 @@
         console.dir(Father);
     
     </script>
+
+
+
+    <script>
+        //字符串压缩 比如输入aaabbbbccc输出a3b4c3
+
+        function compress(str){
+            let temp = str.split('');
+            let result = '';
+            let num = 1;
+            for(var i = 0,len = temp.length;i<len;i++){
+                if(temp[i] == temp[i+1]){
+                    num++;
+                }else{
+                    result+= temp[i]+num;
+                    num = 1;
+                }
+            }
+            return result;
+        }
+        console.log(compress('aaabbbbcccdefghijk'));
+
+
+        /* 
+            连字符转驼峰        
+         */
+        /* function camel(str){
+            var temp = str.split('-');
+            var result;
+
+            for(var i = 1,len = temp.length;i<len;i++){
+                temp[i] = temp[i].slice(0,1).toUpperCase() + temp[i].slice(1);
+            }
+            result = temp.join('')
+            return result;
+        } */
+
+        function camel(str){
+            return str.replace(/-(\w)/g,function(a,b){
+                return b.toUpperCase();
+            })
+        }
+        console.log(camel('a-b-cd-e'))
+    </script>
 </body>
 </html>
