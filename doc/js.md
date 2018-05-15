@@ -351,7 +351,7 @@ SubType.prototype.constructor = SubType;
 
 解决办法 jsonp,cors,nginx代理，window.name ,document.domain
 
-### 8、cookie,localStorage,sessionStorage区别
+### 8、cookie,localStorage,sessionStorage
 
 cookie一般只有4k，localStorage,sessionStorage有5M
 
@@ -360,3 +360,61 @@ cookie一般只有4k，localStorage,sessionStorage有5M
 同一浏览器的相同域名和端口的不同页面间可以共享相同的 localStorage，但是不同页面间无法共享sessionStorage的信息。这里需要注意的是，页面仅指顶级窗口，如果一个页面包含多个iframe且他们属于同源页面，那么他们之间是可以共享sessionStorage的
 
 多级域名共享cookie  设置cookie的domain为顶级域名 
+
+cookie 读取
+```js
+    function parseCookie(){
+        var obj = {};
+        document.cookie.split(';').forEach(function(item,index){
+            obj[item.split('=')[0]] = item.split('=')[1];
+        });
+        return obj;
+    }
+    //设置cookie及失效日期
+    //1
+    document.cookie += ';'+name+'='+value+';expires='+date // date为GMT时间  toGMTString();
+    //2
+    document.cookie += ';'+name+'='+value+';max-age='+time // 失效的毫秒数  正数持久化cookie 0 删除cookie  负数 会话cookie窗口关闭，cookie便清除   
+    //IE 浏览器 不支持 max-age
+```
+
+localStorage,sessionStorage读取
+
+getItem()
+
+setItem
+
+removeItem()
+
+clear();//清除所有的
+
+### 9、web缓存
+
+数据库缓存、代理服务器缓存、CDN缓存、浏览器缓存
+
+
+浏览器缓存
+
+1、Cache-Control
+
+常用值：max-age/s-maxage（只用于共享缓存（比如CDN缓存））/public/private/no-cache/no-store/must-revalidate
+
+2、Expires 
+
+缓存过期时间，用来指定资源到期的时间，是服务器端的具体的时间点。也就是说，Expires=max-age + 请求时间，需要和Last-modified结合使用
+
+3、Last-modified
+
+服务器端文件的最后修改时间，需要和cache-control共同使用，是检查服务器端资源是否更新的一种方式
+
+当浏览器再次进行请求时，会向服务器传送If-Modified-Since报头，询问Last-Modified时间点之后资源是否被修改过。如果没有修改，则返回码为304，使用缓存；如果修改过，则再次去服务器请求资源，返回码和首次请求相同为200，资源为服务器最新资源
+
+4、ETag
+
+根据实体内容生成一段hash字符串，标识资源的状态，由服务端产生。浏览器会将这串字符串传回服务器，验证资源是否已经修改
+
+使用缓存流程
+
+![cache](../img/cache.png)
+
+参考：https://segmentfault.com/a/1190000008377508
