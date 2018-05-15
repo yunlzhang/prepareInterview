@@ -345,3 +345,18 @@ SubType.prototype.constructor = SubType;
 
 ```
 
+### 7、跨域
+
+由于浏览器的同源策略（保证用户信息的安全，防止恶意的网站窃取数据），只要协议、域名、端口号不同就会产生跨域问题。
+
+解决办法 jsonp,cors,nginx代理，window.name ,document.domain
+
+### 8、cookie,localStorage,sessionStorage区别
+
+cookie一般只有4k，localStorage,sessionStorage有5M
+
+不同浏览器无法共享localStorage和sessionStorage中的信息
+
+同一浏览器的相同域名和端口的不同页面间可以共享相同的 localStorage，但是不同页面间无法共享sessionStorage的信息。这里需要注意的是，页面仅指顶级窗口，如果一个页面包含多个iframe且他们属于同源页面，那么他们之间是可以共享sessionStorage的
+
+多级域名共享cookie  设置cookie的domain为顶级域名 
