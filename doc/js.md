@@ -420,3 +420,6 @@ clear();//清除所有的
 参考：https://segmentfault.com/a/1190000008377508
 
 
+### 10、事件循环 （event loop）
+
+参考：https://zhuanlan.zhihu.com/p/33058983
