@@ -32,6 +32,20 @@ destroyed
 
 ![vue 生命周期](../img/lifecycle.png)
 
+
+### vue响应式原理
+
+把一个普通的js对象传给vue实例的data选项，vue会遍历此对象属性，使用Object.defineProperty把这些属性全部转化为getter/setter，这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化
+
+每个组件实例都有相应的 watcher 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新
+
+图示：
+![响应式](../img/data.png)
+
+
+
+
+
 ### 双向数据绑定
 
 基于数据劫持的双向数据绑定
