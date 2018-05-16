@@ -72,7 +72,9 @@ Vue 不能监测以下变动
 
 全局守卫
     使用 router.beforeEach 注册一个全局前置守卫
+
     在 2.5.0+ 你可以用 router.beforeResolve 注册一个全局守卫。这和 router.beforeEach 类似，区别是在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用
+
     你也可以注册全局后置钩子router.afterEach，然而和守卫不同的是，这些钩子不会接受 next 函数也不会改变导航本身
 
 路由独享的守卫
@@ -80,7 +82,9 @@ Vue 不能监测以下变动
 
 组件内的守卫
     beforeRouteEnter 不能获取组件实例 `this`,因为守卫在导航确认前被调用,因此即将登场的新组件还没被创建。
+
     beforeRouteUpdate (2.2 新增)
+    
     beforeRouteLeave
 
 完整导航解析
