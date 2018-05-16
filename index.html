@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ol>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+    </ol>
     <script>
         function Father(){
 
@@ -64,6 +78,22 @@
             })
         }
         console.log(camel('a-b-cd-e'))
+    </script>
+    <script>
+        //广度遍历dom节点
+        function f(ele){
+            if(ele.children){
+                for(let i = 0,len = ele.children.length;i<len;i++){
+                    console.log(ele.children[i]);
+                    setTimeout(function(){
+                        if(ele.children[i].children){
+                            f(ele.children[i])
+                        }
+                    },0)
+                }
+            }
+        }
+        f(document.body);
     </script>
 </body>
 </html>

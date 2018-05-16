@@ -439,3 +439,15 @@ https://www.cnblogs.com/lyzg/p/5125934.html
 ### 10、事件循环 （event loop）
 
 参考：https://zhuanlan.zhihu.com/p/33058983
+
+
+### 11、es6相关 
+
+let,const 
+
+    let不存在变量声明提升的现象。
+
+promise
+
+async,await
+

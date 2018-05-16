@@ -50,7 +50,7 @@ destroyed
 
 基于数据劫持的双向数据绑定
 
-Vue采用数据劫持&发布-订阅模式的方式，通过ES5提供的 Object.defineProperty() 方法来劫持（监控）各属性的 getter 、setter ，并在数据（对象）发生变动时通知订阅者，触发相应的监听回调大致可以划分三个模块：Observer、Compile、Watcher
+Vue采用数据劫持&发布-订阅模式的方式，通过ES5提供的 Object.defineProperty() 方法来劫持（监控）各属性的 getter 、setter ，并在数据（对象）发生变动时通知订阅者，触发相应的监听回调，大致可以划分三个模块：Observer、Compile、Watcher
 
 Observer 数据监听器  负责对数据对象的所有属性进行监听（数据劫持），监听到数据发生变化后通知订阅者。
 
