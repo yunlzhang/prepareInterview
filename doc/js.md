@@ -441,6 +441,11 @@ https://www.cnblogs.com/lyzg/p/5125934.html
 参考：https://zhuanlan.zhihu.com/p/33058983
 
 
+### 11、js与native交互 JSBradge
+
+参考：https://juejin.im/post/5abca877f265da238155b6bc
+
+
 ### 11、es6相关 
 
 let,const 
