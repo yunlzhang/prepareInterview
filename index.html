@@ -95,5 +95,33 @@
         }
         f(document.body);
     </script>
+
+    <script>
+        const myImage = (function() {
+            const imgNode = document.createElement('img')
+            document.body.appendChild(imgNode)
+            return {
+                setSrc: function(src) {
+                    imgNode.src = src
+                }
+            }
+        })()
+          
+        const proxyImage = (function() {
+            const img = new Image()
+            img.onload = function() { // http 图片加载完毕后才会执行
+                myImage.setSrc(this.src)
+            }
+            return {
+              setSrc: function(src) {
+                myImage.setSrc('loading.jpg') // 本地 loading 图片
+                img.src = src
+              }
+            }
+        })()
+          
+        proxyImage.setSrc('https://p.moimg.net/project/project_20180511_1526028866_6615.jpg')
+        // proxyImage.setSrc('https://p.moimg.net/project/project_20180514_1526307693_5144.jpg')
+    </script>
 </body>
 </html>

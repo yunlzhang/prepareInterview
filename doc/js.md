@@ -456,3 +456,29 @@ promise
 
 async,await
 
+
+for in  和 for of的区别
+
+for of 只能遍历数组  遍历value
+
+for of要想遍历对象，需要使用Object.keys()
+
+for in是ES5标准,for of是ES6标准
+
+for in  可以遍历数组或对象 但是遍历的是key
+
+```js
+var obj = {
+    a:1,
+    b:2,
+    c:3,
+    d:4,
+    e:5
+}
+for(var key of Object.keys(obj)){
+    console.log(key + ':' + obj[key]);
+}
+```
+
+
+
