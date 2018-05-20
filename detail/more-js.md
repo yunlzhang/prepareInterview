@@ -34,7 +34,7 @@ http 与 https 的区别
 
 3、http默认端口为80 https 默认端口号是443
 
-4、http是简单无状态，https是有ssl + http 组成的可进行加密传输、身份验证的䙳网络协议
+4、http是简单无状态，https是有ssl + http 组成的可进行加密传输、身份验证的网络协议
 
 
 
