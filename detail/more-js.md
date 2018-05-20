@@ -30,7 +30,7 @@ http 与 https 的区别
 
 1、https协议需要证书
 
-2、https是明文传输，而https使用的是具有安全性的ssl加密传输协议
+2、http是明文传输，而https使用的是具有安全性的ssl加密传输协议
 
 3、http默认端口为80 https 默认端口号是443
 
